@@ -30,6 +30,6 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String registerPost(Model model){
-        return "dashbord";
+        return "dashboard";
     }
 }
