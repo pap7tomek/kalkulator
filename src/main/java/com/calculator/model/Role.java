@@ -4,17 +4,15 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "tblUser")
+@Table(name = "tblRole")
 public class Role {
     private Long id;
-    private String username;
-    private String password;
-    private String passwordConfirm;
-    private Set<Role> roles;
+    private String name;
+    private Set<User> users;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
@@ -22,38 +20,20 @@ public class Role {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    @ManyToMany(mappedBy = "roles")
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-    /*
-    @ManyToMany
-    @JoinTable(name = "tblUserRole", joinColumns = @JoinColumn (name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
-    }
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-    */
-
 }
